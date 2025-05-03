@@ -37,7 +37,7 @@ local font = yabmfr2.LoadFont("path/to/font.fnt")
 ### Creating a Font Renderer
 Create a new font renderer instance with a font list and text:
 ```lua
-local renderer = yabmfr2(font, "Hello, world!")
+local renderer = yabmfr2(font, {"Hello, ", {state = 1}, "world", {state = 0}, "!"})
 ```
 
 ### Rendering Text
@@ -55,8 +55,13 @@ renderer:ApplyAlignment()
 
 ### Applying Custom States
 Set custom rendering states, such as blend modes and colors:
-```
+```lua
 renderer:SetState("mul+alpha", lstg.Color(255, 255, 255, 255))
+```
+
+Alternatively, you can limit only certain text states to be changed
+```lua
+renderer:SetStateSelect(1,"mul+alpha", lstg.Color(255, 255, 0, 0))
 ```
 
 ### Rendering an Outline
